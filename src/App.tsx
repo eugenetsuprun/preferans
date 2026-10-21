@@ -178,6 +178,7 @@ export default function App() {
   const workerRef = useRef<Worker | null>(null);
   const human = !!g && actor(g) === 0,
     playable = g?.phase === "play" && human ? legalCards(g) : [];
+  const handSeat: Seat = g?.phase === "play" && human ? g.turn : 0;
   const dispatch = (a: Action) => {
     setError("");
     setG((current) => {
@@ -711,8 +712,8 @@ export default function App() {
       <footer className="your-area">
         <div className="your-bar">
           <span>
-            <b>Вы</b>
-            <small>{g.calls[0] || "Ваша рука"}</small>
+            <b>{handSeat === 0 ? "Вы" : `Ход за ${NAMES[handSeat]}`}</b>
+            <small>{g.calls[handSeat] || "Ваша рука"}</small>
           </span>
           <span>
             <b>{g.taken[0]}</b>
@@ -720,9 +721,9 @@ export default function App() {
           </span>
         </div>
         <ScoreStrip g={g} seat={0} />
-        <div className="hand-area" aria-label="Ваши карты">
+        <div className="hand-area" aria-label={`Карты: ${NAMES[handSeat]}`}>
           {[0, 1, 2, 3]
-            .filter((st) => g.hands[0].some((c) => suit(c) === st))
+            .filter((st) => g.hands[handSeat].some((c) => suit(c) === st))
             .map((st) => (
               <div className="suit-row" key={st}>
                 <span
@@ -732,7 +733,7 @@ export default function App() {
                   {SUITS[st]}
                 </span>
                 <div className="suit-tiles">
-                  {sort(g.hands[0])
+                  {sort(g.hands[handSeat])
                     .filter((c) => suit(c) === st)
                     .map((c) => (
                       <CardView
@@ -742,7 +743,7 @@ export default function App() {
                         disabled={
                           g.phase === "discard"
                             ? g.declarer !== 0
-                            : !playable.includes(c) || g.turn !== 0
+                            : !playable.includes(c) || !human
                         }
                         onClick={() => {
                           if (g.phase === "discard")
