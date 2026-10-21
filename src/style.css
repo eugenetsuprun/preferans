@@ -2238,3 +2238,6 @@ summary {
 .game .card:disabled {
   opacity: 0.85;
 }
+.game .card.selected:disabled {
+  opacity: 1;
+}
