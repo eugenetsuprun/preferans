@@ -45,6 +45,33 @@ const levels: Record<Difficulty, string> = {
   medium: "Средняя",
   hard: "Высокая",
 };
+function SuitMark({ value }: { value: number }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      focusable="false"
+      className="suit-mark"
+      fill="currentColor"
+    >
+      {value === 0 ? (
+        <path d="M12 1.5C9 5.5 2.5 9.5 2.5 14c0 5.8 7.1 6.8 9 2.1L9.7 22h4.6l-1.8-5.9c1.9 4.7 9 3.7 9-2.1 0-4.5-6.5-8.5-9.5-12.5Z" />
+      ) : value === 1 ? (
+        <>
+          <circle cx="12" cy="6" r="4.5" />
+          <circle cx="6" cy="13" r="4.5" />
+          <circle cx="18" cy="13" r="4.5" />
+          <path d="M10.2 11h3.6c-.1 4.6.5 8.2 2.1 11H8.1c1.6-2.8 2.2-6.4 2.1-11Z" />
+        </>
+      ) : value === 2 ? (
+        <path d="m12 1 9 11-9 11L3 12Z" />
+      ) : (
+        <path d="M12 22C9 18.7 1.5 13.2 1.5 7.1c0-6.1 7.3-8 10.5-2.6 3.2-5.4 10.5-3.5 10.5 2.6C22.5 13.2 15 18.7 12 22Z" />
+      )}
+    </svg>
+  );
+}
+
 function CardView({
   card,
   back = false,
@@ -65,10 +92,12 @@ function CardView({
   ) : (
     <>
       <span className="tile-rank">{RANKS[rank(card!)]}</span>
-      <span className="tile-suit">{SUITS[suit(card!)]}</span>
+      <span className="tile-suit">
+        <SuitMark value={suit(card!)} />
+      </span>
     </>
   );
-  const cls = `card ${back ? "back" : ""} ${card !== undefined && suit(card) > 1 ? "red" : ""} ${small ? "small" : ""} ${selected ? "selected" : ""}`;
+  const cls = `card ${!back && card !== undefined ? `suit-${suit(card)}` : ""} ${back ? "back" : ""} ${card !== undefined && suit(card) > 1 ? "red" : ""} ${small ? "small" : ""} ${selected ? "selected" : ""}`;
   return onClick ? (
     <button
       className={cls}

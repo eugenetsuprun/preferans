@@ -2117,3 +2117,124 @@ summary {
     top: 0;
   }
 }
+
+/* Suit identity uses clear vector silhouettes and contrasting backgrounds. */
+.game .card.suit-0 {
+  --card-bg: #202c45;
+  --card-fg: #f2f5ff;
+  --card-border: #6c85b2;
+}
+.game .card.suit-1 {
+  --card-bg: #183c35;
+  --card-fg: #f2f5ff;
+  --card-border: #6aa99a;
+}
+.game .card.suit-2 {
+  --card-bg: #302742;
+  --card-fg: #ff939f;
+  --card-border: #ad82b6;
+}
+.game .card.suit-3 {
+  --card-bg: #49252c;
+  --card-fg: #ff939f;
+  --card-border: #bc7b83;
+}
+.game .card:not(.back) {
+  background: var(--card-bg);
+  color: var(--card-fg);
+  border-color: var(--card-border);
+}
+.game .card.selected {
+  --card-bg: #493817;
+  --card-border: #f4cd74;
+  box-shadow: 0 0 0 2px #f4cd74;
+}
+.game button.card:not(.back):hover:enabled {
+  background: var(--card-bg);
+  color: var(--card-fg);
+  border-color: #f4cd74;
+  filter: brightness(1.12);
+}
+.game button.card:not(.back):active:enabled {
+  background: var(--card-bg);
+  filter: brightness(1.2);
+}
+.game .card:disabled {
+  opacity: 0.75;
+}
+.suit-mark {
+  width: 22px;
+  height: 22px;
+  display: block;
+  flex: none;
+}
+.game .card .tile-suit {
+  line-height: 0;
+}
+.game .hand-area .card {
+  flex-direction: row;
+  gap: 3px;
+}
+.game .hand-area .tile-rank {
+  font-size: 19px;
+  letter-spacing: -0.7px;
+}
+.game .hand-area .tile-suit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.game .hand-area .suit-mark {
+  width: 20px;
+  height: 22px;
+}
+.game .opponent-hand .suit-mark {
+  width: 13px;
+  height: 15px;
+}
+.game .played .suit-mark {
+  width: 21px;
+  height: 23px;
+}
+@media (min-width: 681px) {
+  .game .hand-area .suit-label {
+    display: none;
+  }
+  .game .hand-area .suit-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .game .hand-area .card {
+    width: 48px;
+    height: 48px;
+  }
+}
+@media (max-width: 680px) {
+  .game .hand-area .card {
+    width: 44px;
+    height: 44px;
+  }
+  .game .hand-area .tile-rank {
+    font-size: 19px;
+  }
+  .game .opponent-hand.exposed .card {
+    gap: 1px;
+  }
+  .game .opponent-hand .suit-mark {
+    width: 11px;
+    height: 14px;
+  }
+  .game .played .card {
+    flex-direction: row;
+    gap: 2px;
+  }
+  .game .played .tile-rank {
+    font-size: 19px;
+  }
+  .game .played .suit-mark {
+    width: 20px;
+    height: 22px;
+  }
+}
+.game .card:disabled {
+  opacity: 0.85;
+}
