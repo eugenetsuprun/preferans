@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import PwaControls from "./PwaControls";
 import {
   type Game,
   type Card,
@@ -63,15 +64,8 @@ function CardView({
     <span className="back-emblem">♠</span>
   ) : (
     <>
-      <span className="corner">
-        {RANKS[rank(card!)]}
-        <span>{SUITS[suit(card!)]}</span>
-      </span>
-      <span className="pip">{SUITS[suit(card!)]}</span>
-      <span className="bottom-corner">
-        {RANKS[rank(card!)]}
-        {SUITS[suit(card!)]}
-      </span>
+      <span className="tile-rank">{RANKS[rank(card!)]}</span>
+      <span className="tile-suit">{SUITS[suit(card!)]}</span>
     </>
   );
   const cls = `card ${back ? "back" : ""} ${card !== undefined && suit(card) > 1 ? "red" : ""} ${small ? "small" : ""} ${selected ? "selected" : ""}`;
@@ -145,6 +139,29 @@ function ScoreTable({ g }: { g: Game }) {
     </table>
   );
 }
+function ScoreStrip({ g, seat }: { g: Game; seat: Seat }) {
+  const net = totals(g.scores)[seat];
+  return (
+    <div className="score-strip" aria-label={`Очки: ${NAMES[seat]}`}>
+      <span>
+        <small>Пуля / {g.settings.target}</small>
+        <strong className="gold">{g.scores[seat].pool}</strong>
+      </span>
+      <span>
+        <small>Гора</small>
+        <strong>{g.scores[seat].hill}</strong>
+      </span>
+      <span>
+        <small>Итог, висты</small>
+        <strong className={net >= 0 ? "gold" : "negative"}>
+          {net > 0 ? "+" : ""}
+          {net.toLocaleString("ru-RU", { maximumFractionDigits: 2 })}
+        </strong>
+      </span>
+    </div>
+  );
+}
+
 export default function App() {
   const [g, setG] = useState<Game | null>(saved),
     [started, setStarted] = useState(false),
@@ -275,8 +292,7 @@ export default function App() {
     : "";
   function badge(s: Seat) {
     if (!g) return null;
-    const active = g.turn === s && g.phase !== "result",
-      isDeclarer = g.declarer === s;
+    const active = g.turn === s && g.phase !== "result";
     const exposed = g.open && g.declarer !== s && g.declarer !== null;
     return (
       <section
@@ -303,15 +319,7 @@ export default function App() {
             <span>взяток</span>
           </span>
         </div>
-        <div className="player-bottom">
-          <span>
-            Пуля <b>{g.scores[s].pool}</b>
-          </span>
-          <span>
-            Гора <b>{g.scores[s].hill}</b>
-          </span>
-          {isDeclarer && <span className="gold">Разыгрывает</span>}
-        </div>
+        <ScoreStrip g={g} seat={s} />
         <div className={`opponent-hand ${exposed ? "exposed" : ""}`}>
           {g.hands[s].map((c, i) => (
             <CardView
@@ -389,6 +397,7 @@ export default function App() {
         >
           Новая пуля
         </button>
+        <PwaControls />
         <p className="lobby-note">
           Торговля, мизер, распасы.
           <br />
@@ -448,6 +457,7 @@ export default function App() {
           <span>♠</span> Преферанс <span className="variant">Сочинка</span>
         </div>
         <div className="header-controls">
+          <PwaControls />
           <button onClick={() => setModal("score")}>
             Пуля{" "}
             <b>
@@ -470,6 +480,40 @@ export default function App() {
         <span>{phaseName}</span>
         <span>{levels[g.settings.difficulty]}</span>
       </div>
+      {g.phase !== "auction" && (
+        <div className="game-stakes" aria-label="Стоимость игры">
+          {g.contract ? (
+            <>
+              <span>
+                {label(g.contract)}:{" "}
+                <b>
+                  {g.contract.misere ? 10 : (g.contract.level - 5) * 2} очков в
+                  пулю
+                </b>
+              </span>
+              <span>
+                {g.contract.misere
+                  ? "Взятки на мизере"
+                  : "Взятки разыгрывающего"}
+                :{" "}
+                <b>
+                  {g.taken[g.declarer!]}/
+                  {g.contract.misere ? 0 : g.contract.level}
+                </b>
+              </span>
+            </>
+          ) : (
+            <>
+              <span>
+                Распасы: <b>1 очко в гору за взятку</b>
+              </span>
+              <span>
+                За ноль: <b>1 очко в пулю</b>
+              </span>
+            </>
+          )}
+        </div>
+      )}
       <div className="opponents">
         {badge(1)}
         {badge(2)}
@@ -671,40 +715,51 @@ export default function App() {
             <small>{g.calls[0] || "Ваша рука"}</small>
           </span>
           <span>
-            Пуля <b className="gold">{g.scores[0].pool}</b>
-            <small>Гора {g.scores[0].hill}</small>
-          </span>
-          <span>
             <b>{g.taken[0]}</b>
             <small>взяток</small>
           </span>
         </div>
-        <div
-          className={`your-hand ${g.hands[0].length > 10 ? "discard-hand" : ""}`}
-        >
-          {sort(g.hands[0]).map((c) => (
-            <CardView
-              key={c}
-              card={c}
-              selected={selected.includes(c)}
-              disabled={
-                g.phase === "discard"
-                  ? g.declarer !== 0
-                  : !playable.includes(c) || g.turn !== 0
-              }
-              onClick={() => {
-                if (g.phase === "discard")
-                  setSelected((s) =>
-                    s.includes(c)
-                      ? s.filter((x) => x !== c)
-                      : s.length < 2
-                        ? [...s, c]
-                        : s,
-                  );
-                else dispatch({ type: "play", card: c });
-              }}
-            />
-          ))}
+        <ScoreStrip g={g} seat={0} />
+        <div className="hand-area" aria-label="Ваши карты">
+          {[0, 1, 2, 3]
+            .filter((st) => g.hands[0].some((c) => suit(c) === st))
+            .map((st) => (
+              <div className="suit-row" key={st}>
+                <span
+                  className={`suit-label ${st > 1 ? "red" : ""}`}
+                  aria-hidden="true"
+                >
+                  {SUITS[st]}
+                </span>
+                <div className="suit-tiles">
+                  {sort(g.hands[0])
+                    .filter((c) => suit(c) === st)
+                    .map((c) => (
+                      <CardView
+                        key={c}
+                        card={c}
+                        selected={selected.includes(c)}
+                        disabled={
+                          g.phase === "discard"
+                            ? g.declarer !== 0
+                            : !playable.includes(c) || g.turn !== 0
+                        }
+                        onClick={() => {
+                          if (g.phase === "discard")
+                            setSelected((s) =>
+                              s.includes(c)
+                                ? s.filter((x) => x !== c)
+                                : s.length < 2
+                                  ? [...s, c]
+                                  : s,
+                            );
+                          else dispatch({ type: "play", card: c });
+                        }}
+                      />
+                    ))}
+                </div>
+              </div>
+            ))}
         </div>
         <div className="footer-line">
           <span>

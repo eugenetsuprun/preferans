@@ -1272,3 +1272,446 @@ summary {
     transform: translateY(-5px);
   }
 }
+
+/* Always-visible scoring: separate pool, hill, and the net settlement. */
+.score-strip {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr 1.3fr;
+  gap: 12px;
+  padding: 13px 0 8px;
+  margin-top: 12px;
+  border-top: 1px solid var(--border);
+  font-variant-numeric: tabular-nums;
+}
+.score-strip > span {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.score-strip small {
+  font-size: 11px;
+  color: #b8b8ca;
+  white-space: nowrap;
+}
+.score-strip strong {
+  font-size: 23px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+.score-strip .negative {
+  color: #f18a91;
+}
+.your-area > .score-strip {
+  max-width: 800px;
+  margin: 0 auto 12px;
+  padding: 10px 0 12px;
+}
+.your-area .your-bar {
+  margin-bottom: 8px;
+}
+.your-area .your-bar > span:last-child {
+  margin-left: auto;
+  margin-right: 0;
+}
+.game-stakes {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  background: #1d1a14;
+  border: 1px solid #5d4a27;
+  border-radius: 7px;
+  color: #cebd9c;
+  font-size: 12px;
+  padding: 10px 13px;
+  margin: 0 0 14px;
+  flex-shrink: 0;
+}
+.game-stakes b {
+  color: #f1cf83;
+  font-weight: 650;
+}
+@media (max-width: 680px) {
+  .score-strip {
+    gap: 5px;
+    padding: 10px 0 5px;
+    margin-top: 10px;
+  }
+  .score-strip small {
+    font-size: 10px;
+  }
+  .score-strip strong {
+    font-size: 19px;
+  }
+  .game-stakes {
+    font-size: 11px;
+    padding: 9px 10px;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .your-area > .score-strip {
+    padding: 8px 0 10px;
+    margin-bottom: 6px;
+  }
+  .your-area .score-strip strong {
+    font-size: 23px;
+  }
+}
+@media (max-width: 370px) {
+  .score-strip strong {
+    font-size: 17px;
+  }
+  .score-strip small {
+    font-size: 9px;
+  }
+}
+
+/* Spades-style tiles: every card has its own unobstructed hit area. */
+.game .card {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: 64px;
+  height: 64px;
+  min-height: 0;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #565568;
+  border-radius: 8px;
+  background: #1d1d2a;
+  color: #e0e0f0;
+  box-shadow: none;
+  overflow: hidden;
+  touch-action: manipulation;
+}
+.game .card.red {
+  color: #f0727c;
+}
+.game .card.back {
+  border: 1px solid #393848;
+  background: #252535;
+}
+.game .card .back-emblem {
+  position: static;
+  inset: auto;
+  font-size: 16px;
+  color: #88839f;
+}
+.tile-rank {
+  font-size: 25px;
+  font-weight: 750;
+  line-height: 1.1;
+}
+.tile-suit {
+  font-size: 18px;
+  line-height: 1;
+}
+.game .card:disabled {
+  opacity: 0.5;
+  filter: none;
+}
+.game .card.selected {
+  background: #44371d;
+  border: 2px solid #e8b84b;
+  box-shadow: 0 0 0 1px #e8b84b;
+  transform: none;
+}
+.game button.card:hover:enabled {
+  border-color: var(--gold);
+  background: #303044;
+  transform: none;
+}
+.game button.card:active:enabled {
+  background: #453b28;
+  transform: scale(0.96);
+}
+.hand-area {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  max-width: 800px;
+  margin: auto;
+  padding: 3px 0 9px;
+}
+.suit-row {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  align-items: start;
+  gap: 8px;
+}
+.suit-label {
+  font-size: 24px;
+  line-height: 48px;
+  text-align: center;
+  color: #deddeb;
+}
+.suit-label.red {
+  color: #f0727c;
+}
+.suit-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.game .hand-area .card {
+  width: 48px;
+  height: 48px;
+  flex: none;
+}
+.hand-area .tile-suit {
+  display: none;
+}
+.hand-area .tile-rank {
+  font-size: 23px;
+}
+.game .opponent-hand {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  height: auto;
+  min-height: 25px;
+  margin: 12px 0 10px;
+  transform: none;
+  justify-content: flex-start;
+}
+.game .opponent-hand .card {
+  margin: 0;
+  width: 20px;
+  height: 25px;
+  border-radius: 4px;
+  flex: none;
+}
+.game .opponent-hand.exposed {
+  height: auto;
+  min-height: 0;
+}
+.game .opponent-hand.exposed .card {
+  width: 36px;
+  height: 40px;
+  margin: 0;
+}
+.game .opponent-hand.exposed button.card {
+  width: 44px;
+  height: 44px;
+}
+.opponent-hand .tile-rank {
+  font-size: 17px;
+}
+.opponent-hand .tile-suit {
+  font-size: 12px;
+}
+.game .played .card {
+  width: 68px;
+  height: 68px;
+}
+.game .kitty-cards .card {
+  width: 56px;
+  height: 56px;
+}
+.game .played.winning .card {
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 0 2px #e8b84b33;
+}
+.game .played.seat-1,
+.game .played.seat-2 {
+  transform: none;
+}
+.game .played.seat-0 {
+  top: 83px;
+}
+.game .your-area {
+  flex-shrink: 0;
+}
+.game {
+  height: auto;
+  min-height: 100dvh;
+}
+.table-area {
+  flex: 1;
+  min-height: 210px;
+}
+.pwa-notice {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  z-index: 50;
+  border: 1px solid #736039;
+  border-radius: 10px;
+  background: #252127;
+  box-shadow: 0 8px 30px #0008;
+  font-size: 12px;
+  max-width: calc(100vw - 24px);
+  width: max-content;
+}
+.pwa-notice button {
+  white-space: nowrap;
+}
+.lobby > .install-button {
+  margin-top: 14px;
+  width: 100%;
+}
+.offline-error {
+  font-size: 10px;
+  color: #f18a91;
+}
+@media (min-width: 681px) {
+  .hand-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px 22px;
+  }
+  .game .hand-area .card {
+    width: 48px;
+    height: 48px;
+  }
+  .table-area {
+    min-height: 240px;
+  }
+}
+@media (max-width: 680px) {
+  .game .card {
+    width: 58px;
+    height: 58px;
+  }
+  .game .hand-area .card {
+    width: 46px;
+    height: 46px;
+  }
+  .suit-tiles {
+    gap: 6px;
+  }
+  .suit-row {
+    grid-template-columns: 20px minmax(0, 1fr);
+    gap: 7px;
+  }
+  .suit-label {
+    font-size: 21px;
+    line-height: 46px;
+  }
+  .hand-area .tile-rank {
+    font-size: 22px;
+  }
+  .game .opponent-hand.exposed .card {
+    width: 30px;
+    height: 34px;
+  }
+  .game .opponent-hand.exposed button.card {
+    width: 44px;
+    height: 44px;
+  }
+  .game .opponent-hand .card {
+    width: 16px;
+    height: 20px;
+  }
+  .game .opponent-hand .back-emblem {
+    font-size: 12px;
+  }
+  .game .header-controls .install-button {
+    font-size: 10px;
+    padding: 5px 8px;
+  }
+  .brand .variant {
+    display: none;
+  }
+  .pwa-notice {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+/* Reserve space for the hand instead of a large decorative table. */
+.game {
+  height: 100dvh;
+  min-height: 680px;
+}
+.game .table-area {
+  height: 150px;
+  min-height: 150px;
+  flex: 1;
+}
+.game .decision-area {
+  min-height: 86px;
+  padding: 10px 0;
+}
+.game .table-area:has(.result-panel) {
+  min-height: 240px;
+}
+@media (min-width: 900px) {
+  .hand-area {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    max-width: none;
+  }
+  .suit-row {
+    gap: 6px;
+    grid-template-columns: 20px minmax(0, 1fr);
+  }
+  .suit-tiles {
+    gap: 5px;
+  }
+  .game .hand-area .card {
+    width: 44px;
+    height: 44px;
+  }
+  .suit-label {
+    line-height: 44px;
+  }
+  .your-area > .score-strip {
+    padding: 7px 0;
+    margin: 0 auto 7px;
+  }
+  .your-area > .score-strip > span {
+    flex-direction: row;
+    gap: 9px;
+    align-items: center;
+  }
+  .your-area > .score-strip strong {
+    font-size: 22px;
+  }
+  .game .your-area {
+    padding-top: 10px;
+  }
+  .game .footer-line {
+    padding-top: 3px;
+  }
+}
+@media (max-width: 680px) {
+  .game {
+    min-height: 820px;
+  }
+  .game .table-area {
+    height: 140px;
+    min-height: 140px;
+  }
+  .game .your-area {
+    padding-top: 10px;
+  }
+  .game .score-strip {
+    margin-top: 8px;
+    padding-top: 9px;
+  }
+  .game .opponent-hand {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+  .game .your-area > .score-strip {
+    margin-top: 0;
+  }
+  .game .opponent-hand.exposed .card {
+    width: 30px;
+    height: 34px;
+  }
+  .game .opponent-hand.exposed button.card {
+    width: 44px;
+    height: 44px;
+  }
+}
