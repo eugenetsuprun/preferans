@@ -1715,3 +1715,26 @@ summary {
     height: 44px;
   }
 }
+@media (max-width: 680px) {
+  .header-controls .install-label {
+    display: none;
+  }
+  .game .header-controls .install-button {
+    min-width: 38px;
+    padding: 5px 9px;
+    font-size: 20px;
+  }
+}
+@media (max-width: 370px) {
+  .game .brand {
+    font-size: 14px;
+    gap: 5px;
+  }
+  .game .brand > span:first-child {
+    font-size: 20px;
+  }
+  .game .header-controls button {
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+}

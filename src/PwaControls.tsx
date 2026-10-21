@@ -43,8 +43,14 @@ export default function PwaControls() {
   return (
     <>
       {install && (
-        <button className="install-button" onClick={installApp}>
-          Установить
+        <button
+          className="install-button"
+          aria-label="Установить приложение"
+          title="Установить приложение"
+          onClick={installApp}
+        >
+          <span aria-hidden="true">↓</span>
+          <span className="install-label"> Установить</span>
         </button>
       )}
       {refresh && (
