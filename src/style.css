@@ -2241,3 +2241,28 @@ summary {
 .game .card.selected:disabled {
   opacity: 1;
 }
+.game .round-bar {
+  flex-wrap: wrap;
+  flex-basis: auto;
+  gap: 4px 10px;
+  min-height: 24px;
+}
+.game .turn-indicator,
+.game .turn-badge {
+  color: #ffe5a3;
+  font-weight: 700;
+}
+.game .player.active,
+.game .your-area.active-hand {
+  border-color: #d7ad55;
+  box-shadow: 0 0 0 2px #d7ad5540;
+}
+.game .opponent-hand.exposed button.card {
+  pointer-events: auto;
+  min-width: 44px;
+  min-height: 44px;
+  height: 44px;
+}
+.game .opponent-hand.exposed:has(button.card) {
+  grid-template-columns: repeat(auto-fit, minmax(44px, 1fr));
+}

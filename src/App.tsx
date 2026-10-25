@@ -207,7 +207,8 @@ export default function App() {
   const workerRef = useRef<Worker | null>(null);
   const human = !!g && actor(g) === 0,
     playable = g?.phase === "play" && human ? legalCards(g) : [];
-  const handSeat: Seat = g?.phase === "play" && human ? g.turn : 0;
+  // Keep your own hand in place; a controlled partner is played in their panel.
+  const handSeat: Seat = 0;
   const dispatch = (a: Action) => {
     setError("");
     setG((current) => {
@@ -322,18 +323,22 @@ export default function App() {
     : "";
   function badge(s: Seat) {
     if (!g) return null;
-    const active = g.turn === s && g.phase !== "result";
-    const exposed = g.open && g.declarer !== s && g.declarer !== null;
+    const active = g.turn === s && g.phase !== "result" && g.phase !== "trick";
+    const exposed = g.open && g.declarer !== null;
     return (
       <section
         className={`player player-${s} ${active ? "active" : ""}`}
-        aria-label={NAMES[s]}
+        aria-label={`${NAMES[s]}${active ? ", сейчас ходит" : ""}`}
+        aria-current={active ? "true" : undefined}
       >
         <div className="player-top">
           <span className="avatar">{s === 1 ? "А" : "М"}</span>
           <div>
             <h2>
-              {NAMES[s]} <span className="bot">бот</span>
+              {NAMES[s]}{" "}
+              <span className={`bot ${active ? "turn-badge" : ""}`}>
+                {active ? "Ходит" : "бот"}
+              </span>
             </h2>
             <p>
               {g.calls[s] ||
@@ -508,6 +513,15 @@ export default function App() {
       <div className="round-bar">
         <span>Раздача {g.number}</span>
         <span>{phaseName}</span>
+        {g.phase !== "result" && (
+          <span className="turn-indicator">
+            {g.phase === "trick"
+              ? `Взятка: ${NAMES[g.lastWinner!]}`
+              : g.turn === 0
+                ? "Ваш ход"
+                : `Ходит: ${NAMES[g.turn]}${human ? " (вы за партнёра)" : ""}`}
+          </span>
+        )}
         <span>{levels[g.settings.difficulty]}</span>
       </div>
       {g.phase !== "auction" && (
@@ -738,7 +752,9 @@ export default function App() {
           </div>
         )}
       </section>
-      <footer className="your-area">
+      <footer
+        className={`your-area ${g.turn === 0 && g.phase !== "result" && g.phase !== "trick" ? "active-hand" : ""}`}
+      >
         <div className="your-bar">
           <span>
             <b>{handSeat === 0 ? "Вы" : `Ход за ${NAMES[handSeat]}`}</b>
