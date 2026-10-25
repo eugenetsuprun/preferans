@@ -1,0 +1,43 @@
+{
+  "games": 24000,
+  "train": 19200,
+  "validation": 2400,
+  "test": 2400,
+  "dataSha256": "b315490c859571f910f11f0ce65bd92c4cf7167ebc9315eaf178e9dbb9a69057",
+  "bestEpoch": 41,
+  "temperature": 1.0,
+  "testNll": 1.4788094758987427,
+  "priorNll": 2.150137424468994,
+  "testMeanAbsoluteTrickError": 0.8875584006309509,
+  "priorMeanAbsoluteTrickError": 1.7312852144241333,
+  "sixTrickBrierScore": 0.1052679792046547,
+  "labelHistogram": [
+    570,
+    1237,
+    2568,
+    3556,
+    4132,
+    4001,
+    3537,
+    2385,
+    1198,
+    561,
+    255
+  ],
+  "teacher": "Current medium bot with hidden-information sampling; both defenders whist, six-trick contracts",
+  "scope": "Predicts post-discard trick distribution from own hand, private discard, trump and position. Predictive accuracy is not a claim of stronger game play.",
+  "randomSeed": 719,
+  "torchVersion": "2.11.0",
+  "numpyVersion": "2.3.5",
+  "seedRanges": [
+    [
+      1000001,
+      1006000
+    ],
+    [
+      2000001,
+      2018000
+    ]
+  ],
+  "weightsSha256": "c6c5924691bdea8f4e5e9226283474749a8c08bd31262431e4355e6b363d43bb"
+}

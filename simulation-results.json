@@ -1,0 +1,688 @@
+{
+  "date": "2026-10-25",
+  "activePolicy": "src/bot.ts -> src/ai-trained.ts; search fallback src/ai.ts",
+  "searchVsOriginal": {
+    "baseline": "b542e19",
+    "startSeed": 40001,
+    "deals": 48,
+    "suiteDeals": 12,
+    "competitive": {
+      "comparisons": 144,
+      "scoreDelta": 776.6800000000001,
+      "better": 52,
+      "tied": 62,
+      "worse": 30,
+      "baselineValue": -0.09000000000000341,
+      "candidateValue": 776.5900000000001
+    },
+    "roles": {
+      "declarer": {
+        "comparisons": 30,
+        "scoreDelta": 488.70000000000005,
+        "better": 20,
+        "tied": 3,
+        "worse": 7,
+        "baselineValue": 108.01000000000003,
+        "candidateValue": 596.7100000000002
+      },
+      "defender": {
+        "comparisons": 53,
+        "scoreDelta": 173.98,
+        "better": 15,
+        "tied": 27,
+        "worse": 11,
+        "baselineValue": -110.63000000000002,
+        "candidateValue": 63.35000000000001
+      },
+      "raspasy": {
+        "comparisons": 61,
+        "scoreDelta": 114,
+        "better": 17,
+        "tied": 32,
+        "worse": 12,
+        "baselineValue": 2.529999999999948,
+        "candidateValue": 116.52999999999994
+      }
+    },
+    "contracts": {
+      "sixTrump": {
+        "comparisons": 36,
+        "scoreDelta": -86.65,
+        "better": 10,
+        "tied": 18,
+        "worse": 8,
+        "baselineValue": 0,
+        "candidateValue": -86.64999999999999
+      },
+      "sevenNoTrump": {
+        "comparisons": 36,
+        "scoreDelta": 6.680000000000007,
+        "better": 12,
+        "tied": 15,
+        "worse": 9,
+        "baselineValue": -0.010000000000019327,
+        "candidateValue": 6.669999999999945
+      },
+      "misere": {
+        "comparisons": 36,
+        "scoreDelta": 1499.97,
+        "better": 10,
+        "tied": 17,
+        "worse": 9,
+        "baselineValue": 0.029999999999972715,
+        "candidateValue": 1499.9999999999995
+      },
+      "raspasy": {
+        "comparisons": 36,
+        "scoreDelta": 86.67,
+        "better": 12,
+        "tied": 18,
+        "worse": 6,
+        "baselineValue": -0.11000000000002785,
+        "candidateValue": 86.55999999999996
+      }
+    },
+    "method": "Matched seeded independent deals with each candidate seat rotated against two baseline bots; competitive auctions and normal whist/open-hand control. Unfinished pool valued as hill minus pool. Forced contract suite isolates card play. Wall-clock search budgets may affect reproducibility."
+  },
+  "neuralDevelopment": {
+    "baseline": "Search champion retained in src/ai.ts (arena snapshot originally at /private/tmp/preferans-search-champion.ts)",
+    "candidateHash": "be67d5f6405337a3b5b5124370474335260e121c43fc1b0e1865d844923babed",
+    "startSeed": 50001,
+    "deals": 24,
+    "suiteDeals": 0,
+    "competitive": {
+      "comparisons": 72,
+      "scoreDelta": 145.34,
+      "better": 4,
+      "tied": 67,
+      "worse": 1,
+      "baselineValue": -0.02000000000000668,
+      "candidateValue": 145.32000000000008
+    },
+    "roles": {
+      "declarer": {
+        "comparisons": 20,
+        "scoreDelta": 145.34,
+        "better": 4,
+        "tied": 15,
+        "worse": 1,
+        "baselineValue": 141.34000000000003,
+        "candidateValue": 286.68
+      },
+      "defender": {
+        "comparisons": 40,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 40,
+        "worse": 0,
+        "baselineValue": -141.32,
+        "candidateValue": -141.32
+      },
+      "raspasy": {
+        "comparisons": 12,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 12,
+        "worse": 0,
+        "baselineValue": -0.040000000000009805,
+        "candidateValue": -0.040000000000009805
+      }
+    },
+    "contracts": {
+      "sixTrump": {
+        "comparisons": 0,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 0,
+        "worse": 0,
+        "baselineValue": 0,
+        "candidateValue": 0
+      },
+      "sevenNoTrump": {
+        "comparisons": 0,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 0,
+        "worse": 0,
+        "baselineValue": 0,
+        "candidateValue": 0
+      },
+      "misere": {
+        "comparisons": 0,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 0,
+        "worse": 0,
+        "baselineValue": 0,
+        "candidateValue": 0
+      },
+      "raspasy": {
+        "comparisons": 0,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 0,
+        "worse": 0,
+        "baselineValue": 0,
+        "candidateValue": 0
+      }
+    },
+    "method": "Matched seeded independent deals with each candidate seat rotated against two baseline bots; competitive auctions and normal whist/open-hand control. Unfinished pool valued as hill minus pool. Forced contract suite isolates card play. Wall-clock search budgets may affect reproducibility."
+  },
+  "neuralHoldout": {
+    "baseline": "Search champion retained in src/ai.ts (arena snapshot originally at /private/tmp/preferans-search-champion.ts)",
+    "candidateHash": "40ff087e3df7f68ee5beb654b35839ca7cad05670f476fc63c08be56cf58e0e2",
+    "startSeed": 80001,
+    "deals": 24,
+    "suiteDeals": 0,
+    "competitive": {
+      "comparisons": 72,
+      "scoreDelta": 85.34,
+      "better": 2,
+      "tied": 70,
+      "worse": 0,
+      "baselineValue": -0.07000000000003581,
+      "candidateValue": 85.26999999999998
+    },
+    "roles": {
+      "declarer": {
+        "comparisons": 11,
+        "scoreDelta": 85.34,
+        "better": 2,
+        "tied": 9,
+        "worse": 0,
+        "baselineValue": 342.01,
+        "candidateValue": 427.35
+      },
+      "defender": {
+        "comparisons": 22,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 22,
+        "worse": 0,
+        "baselineValue": -341.98,
+        "candidateValue": -341.98
+      },
+      "raspasy": {
+        "comparisons": 39,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 39,
+        "worse": 0,
+        "baselineValue": -0.10000000000002629,
+        "candidateValue": -0.10000000000002629
+      }
+    },
+    "contracts": {
+      "sixTrump": {
+        "comparisons": 0,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 0,
+        "worse": 0,
+        "baselineValue": 0,
+        "candidateValue": 0
+      },
+      "sevenNoTrump": {
+        "comparisons": 0,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 0,
+        "worse": 0,
+        "baselineValue": 0,
+        "candidateValue": 0
+      },
+      "misere": {
+        "comparisons": 0,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 0,
+        "worse": 0,
+        "baselineValue": 0,
+        "candidateValue": 0
+      },
+      "raspasy": {
+        "comparisons": 0,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 0,
+        "worse": 0,
+        "baselineValue": 0,
+        "candidateValue": 0
+      }
+    },
+    "method": "Matched seeded independent deals with each candidate seat rotated against two baseline bots; competitive auctions and normal whist/open-hand control. Unfinished pool valued as hill minus pool. Forced contract suite isolates card play. Wall-clock search budgets may affect reproducibility."
+  },
+  "neuralDiscardOnly": {
+    "baseline": "Search champion retained in src/ai.ts (arena snapshot originally at /private/tmp/preferans-search-champion.ts)",
+    "candidateHash": "8d362560c8d960ec1ef09ad836cdb8ce2c819e8e1e317436578ec31338f5d186",
+    "startSeed": 50001,
+    "deals": 24,
+    "suiteDeals": 0,
+    "competitive": {
+      "comparisons": 72,
+      "scoreDelta": 104.67,
+      "better": 4,
+      "tied": 67,
+      "worse": 1,
+      "baselineValue": -0.02000000000000668,
+      "candidateValue": 104.65
+    },
+    "roles": {
+      "declarer": {
+        "comparisons": 20,
+        "scoreDelta": 104.67,
+        "better": 4,
+        "tied": 15,
+        "worse": 1,
+        "baselineValue": 141.34000000000003,
+        "candidateValue": 246.01
+      },
+      "defender": {
+        "comparisons": 40,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 40,
+        "worse": 0,
+        "baselineValue": -141.32,
+        "candidateValue": -141.32
+      },
+      "raspasy": {
+        "comparisons": 12,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 12,
+        "worse": 0,
+        "baselineValue": -0.040000000000009805,
+        "candidateValue": -0.040000000000009805
+      }
+    },
+    "contracts": {
+      "sixTrump": {
+        "comparisons": 0,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 0,
+        "worse": 0,
+        "baselineValue": 0,
+        "candidateValue": 0
+      },
+      "sevenNoTrump": {
+        "comparisons": 0,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 0,
+        "worse": 0,
+        "baselineValue": 0,
+        "candidateValue": 0
+      },
+      "misere": {
+        "comparisons": 0,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 0,
+        "worse": 0,
+        "baselineValue": 0,
+        "candidateValue": 0
+      },
+      "raspasy": {
+        "comparisons": 0,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 0,
+        "worse": 0,
+        "baselineValue": 0,
+        "candidateValue": 0
+      }
+    },
+    "method": "Matched seeded independent deals with each candidate seat rotated against two baseline bots; competitive auctions and normal whist/open-hand control. Unfinished pool valued as hill minus pool. Forced contract suite isolates card play. Wall-clock search budgets may affect reproducibility."
+  },
+  "rejectedNeuralV1": {
+    "baseline": "Search champion retained in src/ai.ts (arena snapshot originally at /private/tmp/preferans-search-champion.ts)",
+    "candidateHash": "ceca9aa6e6e3204e41aee9585e9b68b4e7ffac7d0d88c419829c7d2529cbd636",
+    "startSeed": 50001,
+    "deals": 24,
+    "suiteDeals": 0,
+    "competitive": {
+      "comparisons": 72,
+      "scoreDelta": -46.669999999999995,
+      "better": 4,
+      "tied": 59,
+      "worse": 9,
+      "baselineValue": -0.02000000000000668,
+      "candidateValue": -46.69000000000001
+    },
+    "roles": {
+      "declarer": {
+        "comparisons": 20,
+        "scoreDelta": -46.669999999999995,
+        "better": 4,
+        "tied": 7,
+        "worse": 9,
+        "baselineValue": 141.34000000000003,
+        "candidateValue": 94.67
+      },
+      "defender": {
+        "comparisons": 40,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 40,
+        "worse": 0,
+        "baselineValue": -141.32,
+        "candidateValue": -141.32
+      },
+      "raspasy": {
+        "comparisons": 12,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 12,
+        "worse": 0,
+        "baselineValue": -0.040000000000009805,
+        "candidateValue": -0.040000000000009805
+      }
+    },
+    "contracts": {
+      "sixTrump": {
+        "comparisons": 0,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 0,
+        "worse": 0,
+        "baselineValue": 0,
+        "candidateValue": 0
+      },
+      "sevenNoTrump": {
+        "comparisons": 0,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 0,
+        "worse": 0,
+        "baselineValue": 0,
+        "candidateValue": 0
+      },
+      "misere": {
+        "comparisons": 0,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 0,
+        "worse": 0,
+        "baselineValue": 0,
+        "candidateValue": 0
+      },
+      "raspasy": {
+        "comparisons": 0,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 0,
+        "worse": 0,
+        "baselineValue": 0,
+        "candidateValue": 0
+      }
+    },
+    "method": "Matched seeded independent deals with each candidate seat rotated against two baseline bots; competitive auctions and normal whist/open-hand control. Unfinished pool valued as hill minus pool. Forced contract suite isolates card play. Wall-clock search budgets may affect reproducibility."
+  },
+  "rejectedNeuralV2": {
+    "baseline": "Search champion retained in src/ai.ts (arena snapshot originally at /private/tmp/preferans-search-champion.ts)",
+    "candidateHash": "ceca9aa6e6e3204e41aee9585e9b68b4e7ffac7d0d88c419829c7d2529cbd636",
+    "startSeed": 60001,
+    "deals": 24,
+    "suiteDeals": 0,
+    "competitive": {
+      "comparisons": 72,
+      "scoreDelta": -15.99,
+      "better": 3,
+      "tied": 65,
+      "worse": 4,
+      "baselineValue": -0.040000000000020464,
+      "candidateValue": -16.030000000000015
+    },
+    "roles": {
+      "declarer": {
+        "comparisons": 12,
+        "scoreDelta": -15.99,
+        "better": 3,
+        "tied": 5,
+        "worse": 4,
+        "baselineValue": 75.35000000000001,
+        "candidateValue": 59.360000000000014
+      },
+      "defender": {
+        "comparisons": 24,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 24,
+        "worse": 0,
+        "baselineValue": -75.30000000000007,
+        "candidateValue": -75.30000000000007
+      },
+      "raspasy": {
+        "comparisons": 36,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 36,
+        "worse": 0,
+        "baselineValue": -0.0900000000000194,
+        "candidateValue": -0.0900000000000194
+      }
+    },
+    "contracts": {
+      "sixTrump": {
+        "comparisons": 0,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 0,
+        "worse": 0,
+        "baselineValue": 0,
+        "candidateValue": 0
+      },
+      "sevenNoTrump": {
+        "comparisons": 0,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 0,
+        "worse": 0,
+        "baselineValue": 0,
+        "candidateValue": 0
+      },
+      "misere": {
+        "comparisons": 0,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 0,
+        "worse": 0,
+        "baselineValue": 0,
+        "candidateValue": 0
+      },
+      "raspasy": {
+        "comparisons": 0,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 0,
+        "worse": 0,
+        "baselineValue": 0,
+        "candidateValue": 0
+      }
+    },
+    "method": "Matched seeded independent deals with each candidate seat rotated against two baseline bots; competitive auctions and normal whist/open-hand control. Unfinished pool valued as hill minus pool. Forced contract suite isolates card play. Wall-clock search budgets may affect reproducibility."
+  },
+  "rejectedSearchPrototype": {
+    "baseline": "b542e19",
+    "startSeed": 20001,
+    "deals": 24,
+    "suiteDeals": 8,
+    "competitive": {
+      "comparisons": 72,
+      "scoreDelta": -77.30999999999999,
+      "better": 14,
+      "tied": 47,
+      "worse": 11,
+      "baselineValue": -0.1500000000000341,
+      "candidateValue": -77.46000000000005
+    },
+    "roles": {
+      "declarer": {
+        "comparisons": 13,
+        "scoreDelta": -53.97999999999999,
+        "better": 5,
+        "tied": 3,
+        "worse": 5,
+        "baselineValue": 265.32000000000005,
+        "candidateValue": 211.34000000000003
+      },
+      "defender": {
+        "comparisons": 20,
+        "scoreDelta": -133.32999999999998,
+        "better": 0,
+        "tied": 16,
+        "worse": 4,
+        "baselineValue": -255.33999999999995,
+        "candidateValue": -388.66999999999996
+      },
+      "raspasy": {
+        "comparisons": 39,
+        "scoreDelta": 110,
+        "better": 9,
+        "tied": 28,
+        "worse": 2,
+        "baselineValue": -10.130000000000058,
+        "candidateValue": 99.86999999999995
+      }
+    },
+    "contracts": {
+      "sixTrump": {
+        "comparisons": 24,
+        "scoreDelta": -8.670000000000002,
+        "better": 1,
+        "tied": 22,
+        "worse": 1,
+        "baselineValue": 0.030000000000020677,
+        "candidateValue": -8.639999999999981
+      },
+      "sevenNoTrump": {
+        "comparisons": 24,
+        "scoreDelta": 61.34,
+        "better": 2,
+        "tied": 21,
+        "worse": 1,
+        "baselineValue": 0.009999999999976694,
+        "candidateValue": 61.35000000000002
+      },
+      "misere": {
+        "comparisons": 24,
+        "scoreDelta": 100,
+        "better": 1,
+        "tied": 23,
+        "worse": 0,
+        "baselineValue": 0.009999999999990905,
+        "candidateValue": 100.00999999999993
+      },
+      "raspasy": {
+        "comparisons": 24,
+        "scoreDelta": -30,
+        "better": 2,
+        "tied": 18,
+        "worse": 4,
+        "baselineValue": -0.0500000000000167,
+        "candidateValue": -30.050000000000026
+      }
+    },
+    "method": "Matched seeded independent deals with each candidate seat rotated against two baseline bots; competitive auctions and normal whist/open-hand control. Unfinished pool valued as hill minus pool. Forced contract suite isolates card play. Wall-clock search budgets may affect reproducibility."
+  },
+  "trainingReport": "TRAINING_REPORT.md",
+  "trainingMetrics": "training-results.json",
+  "validation": {
+    "testsPassed": 35,
+    "productionBuild": "passed; trained policy selected in worker",
+    "trainingDatasetSha256": "verified",
+    "trainingDatasetRows": 24000
+  },
+  "limitations": [
+    "Independent-deal scores use hill minus pool; these are not complete-match win rates.",
+    "Seat comparisons within a layout are correlated.",
+    "The six-spade forced-contract suite regressed.",
+    "Few decisions changed in the neural holdout; the model is a pilot, not validated expert play."
+  ],
+  "activeVsOriginal": {
+    "baseline": "b542e19",
+    "candidateHash": "1d85e2242b721a88f7926d7e1868be1ddb04853dd04d768902d131981f1201d4",
+    "startSeed": 90001,
+    "deals": 24,
+    "suiteDeals": 0,
+    "competitive": {
+      "comparisons": 72,
+      "scoreDelta": 302.67,
+      "better": 29,
+      "tied": 30,
+      "worse": 13,
+      "baselineValue": -0.07000000000000917,
+      "candidateValue": 302.6
+    },
+    "roles": {
+      "declarer": {
+        "comparisons": 20,
+        "scoreDelta": 120.00999999999998,
+        "better": 13,
+        "tied": 3,
+        "worse": 4,
+        "baselineValue": 134.67000000000002,
+        "candidateValue": 254.68
+      },
+      "defender": {
+        "comparisons": 23,
+        "scoreDelta": 99.33,
+        "better": 6,
+        "tied": 14,
+        "worse": 3,
+        "baselineValue": -197.99,
+        "candidateValue": -98.66
+      },
+      "raspasy": {
+        "comparisons": 29,
+        "scoreDelta": 83.33,
+        "better": 10,
+        "tied": 13,
+        "worse": 6,
+        "baselineValue": 63.24999999999996,
+        "candidateValue": 146.57999999999998
+      }
+    },
+    "contracts": {
+      "sixTrump": {
+        "comparisons": 0,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 0,
+        "worse": 0,
+        "baselineValue": 0,
+        "candidateValue": 0
+      },
+      "sevenNoTrump": {
+        "comparisons": 0,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 0,
+        "worse": 0,
+        "baselineValue": 0,
+        "candidateValue": 0
+      },
+      "misere": {
+        "comparisons": 0,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 0,
+        "worse": 0,
+        "baselineValue": 0,
+        "candidateValue": 0
+      },
+      "raspasy": {
+        "comparisons": 0,
+        "scoreDelta": 0,
+        "better": 0,
+        "tied": 0,
+        "worse": 0,
+        "baselineValue": 0,
+        "candidateValue": 0
+      }
+    },
+    "method": "Matched seeded independent deals with each candidate seat rotated against two baseline bots; competitive auctions and normal whist/open-hand control. Unfinished pool valued as hill minus pool. Forced contract suite isolates card play. Wall-clock search budgets may affect reproducibility."
+  }
+}

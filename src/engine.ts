@@ -338,6 +338,23 @@ export function totals(scores: Score[]): number[] {
     return Math.round(n * 100) / 100;
   });
 }
+// Score a hypothetical completed deal with the same rules as real play. Search
+// and offline evaluation can value outcomes without mutating the live game.
+export function outcomeScores(
+  original: Game,
+  taken: number[],
+  uncontested = false,
+  half = false,
+): Score[] {
+  const g = {
+    ...original,
+    taken: taken.slice(),
+    scores: structuredClone(original.scores),
+    records: [],
+  };
+  finish(g, uncontested, half);
+  return g.scores;
+}
 export function step(original: Game, a: Action): Game {
   if (a.type === "next") {
     if (original.phase !== "result" || original.finished)

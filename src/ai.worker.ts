@@ -1,4 +1,4 @@
-import { botAction } from "./ai";
+import { botAction } from "./bot";
 self.onmessage = ({ data }) => {
   try {
     self.postMessage({

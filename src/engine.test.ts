@@ -13,7 +13,8 @@ import {
   actor,
   emptyScores,
 } from "./engine";
-import { botAction, sampleWorld } from "./ai";
+import { sampleWorld } from "./ai";
+import { botAction } from "./bot";
 const fresh = () => deal({ difficulty: "easy", target: 10, speed: 0 });
 function playToEnd(g: Game, max = 500) {
   let n = 0;
